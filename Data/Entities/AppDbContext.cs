@@ -40,6 +40,8 @@ namespace Data.Entities
                 entity.Property(e => e.Pass).HasMaxLength(20);
 
                 entity.Property(e => e.Usuario).HasMaxLength(20);
+
+                entity.HasIndex(e => e.Usuario).IsUnique();
             });
 
             modelBuilder.Entity<GenPersona>(entity =>
@@ -65,6 +67,8 @@ namespace Data.Entities
                 .HasForeignKey(d => d.TipoIdentificacionId)
                 .OnDelete(DeleteBehavior.ClientSetNull)
                 .HasConstraintName("FK_gen_personas_tipo_identificaciones");
+
+                entity.HasIndex(e => e.Identificacion).IsUnique();
             });
 
             modelBuilder.Entity<TipoIdentificacion>(entity =>

@@ -77,7 +77,10 @@ namespace Business.Services
 
                 if (find == null) throw new Exception("No se encontro coincidencia");
 
+
                 _context.Entry(find).CurrentValues.SetValues(input);
+                find.Identificacion = tipoIdenti.Sigla + " " + input.NumeroIdentificacion;
+                find.NombreCompleto = input.Nombres + " " + input.Apellidos;
                 _context.GenPersonas.Update(find);
                 _context.SaveChanges();
 
